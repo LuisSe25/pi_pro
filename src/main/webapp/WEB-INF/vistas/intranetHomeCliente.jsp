@@ -70,6 +70,14 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+            <div class="sidebar-heading">
+        Tarjeta
+      </div>
+            <li class="nav-item">
+        <a class="nav-link" href="/verConfiguracionTarjeta">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Configuracion de Tarjeta</span></a>
+      </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

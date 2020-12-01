@@ -33,6 +33,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 	@Query("Select p from Cliente p where p.nombre like :ar_param")
 	public abstract List<Cliente> listaPorNombre(@Param("ar_param") String filtro);
 
+	
+
 
 
 }

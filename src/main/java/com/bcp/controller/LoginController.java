@@ -13,22 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bcp.entidad.Cliente;
 import com.bcp.entidad.Opcion;
 import com.bcp.entidad.Rol;
+import com.bcp.entidad.Tarjeta;
 import com.bcp.servicio.ClienteService;
+import com.bcp.servicio.TarjetaService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	private ClienteService servicio;
+	@Autowired
+	private TarjetaService servicioTarjeta;
 
 	@RequestMapping("/")
 	public String ver() {
 		return "login";
 	}
+	@RequestMapping("/verConfiguracionTarjeta")
+	public String verTarjeta() {
+		return "configuracionTarjeta";
+	}
 
 	@RequestMapping("/login")
 	public String login(Cliente cliente, HttpSession session, HttpServletRequest request) {
 		Cliente clientes = servicio.login(cliente);
+		
 		if (clientes == null) {
 			    request.setAttribute("mensaje", "El usuario no existe");
 			return "login";
@@ -36,10 +45,13 @@ public class LoginController {
 		else if(clientes.getIdrol()==3) {
 			List<Opcion> menus = servicio.traerEnlacesDeCliente(clientes.getIdCliente());
 			List<Rol> roles = servicio.traerRolesDeCliente(clientes.getIdCliente());
+			Tarjeta tarjetas = servicioTarjeta.traerTarjeta(clientes.getIdCliente());
+			
 
 			session.setAttribute("objCliente", clientes);
 			session.setAttribute("objMenus", menus);
 			session.setAttribute("objRoles", roles);
+			session.setAttribute("objTarjeta", tarjetas);
 			return "intranetHomeCliente";
 		}
 		else {

@@ -34,17 +34,17 @@ $(document).ready(function(){
 	$('.btn-exit-system').on('click', function(e){
 		e.preventDefault();
 		Swal.fire({
-			title: 'Estas seguro de cerrar sesion?',
-			text: "Esta a punto de cerrar la sesion y salir del sistema.",
+			title: 'Are you sure to close the session?',
+			text: "You are about to close the session and exit the system",
 			type: 'question',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, salir!',
-			cancelButtonText: 'No, cancelar'
+			confirmButtonText: 'Yes, exit!',
+			cancelButtonText: 'No, cancel'
 		}).then((result) => {
 			if (result.value) {
-				window.location="localhost:8090/login";
+				window.location="index.html";
 			}
 		});
 	});

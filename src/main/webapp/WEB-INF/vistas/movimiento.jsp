@@ -65,7 +65,11 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Transferencias</span></a>
       </li>
-
+       <li class="nav-item">
+        <a class="nav-link" href="/verConfiguracion">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Configuración</span></a>
+      </li>
       <!-- Nav Item - Tables -->
 
       <!-- Divider -->
@@ -186,7 +190,15 @@
         <div class="container-fluid">
 		<h4>Tranferencia BCP</h4>
 <form action="tranferencia" id="id_form" method="post"> 
-		
+			<div class="col-md-4">
+							<c:if test="${sessionScope.MENSAJE != null }">
+									<div class="alert alert-success" id="success-alert">
+							 		   <button type="button" class="close" data-dismiss="alert">x</button>
+										${sessionScope.MENSAJE}				
+									</div>
+							</c:if>
+							<c:remove var="MENSAJE"/>
+						</div>
 			<div class="form-group">
 				<label class="control-label" for="id_cuenta_ori">Cuenta Origen</label>
 				<select id="id_cuenta_ori" name="cuentaOrigen" class='form-control'>
@@ -202,6 +214,7 @@
 			<div class="form-group">
 				<label class="control-label" for="id_cuenta_des">Cuenta Destino</label>
 				<input class="form-control" type="text" id="id_cuenta_des" name="cuentaDestino" placeholder="Ingrese el nombre">
+				
 			</div>
 			
 		    
@@ -279,6 +292,12 @@
 
 </body>
 <script>
+function cargarCliente("#id_cuenta_des"){
+	
+	
+}
+</script>
+<script>
 	
 
 	$(document).ready(function () {
@@ -340,10 +359,17 @@
         });
     });
     </script>
-    <script type="text/javascript">
+ <script type="text/javascript">
 $.getJSON("cargaCuenta", {}, function(data){
 	$.each(data, function(index,item){
 		$("#id_cuenta_ori").append("<option value="+item.numero +">"+ item.numero +"</option>");
+	});
+});
+</script>
+ <script type="text/javascript">
+$.getJSON("cargaNombreCuenta", {}, function(data){
+	$.each(data, function(index,item){
+		$("#id_cuenta_des_cli").append("<option value="+item.nombre +">"+ item.nombre +"</option>");
 	});
 });
 </script>
